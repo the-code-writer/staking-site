@@ -8,6 +8,12 @@ pragma solidity ^0.8.0;
  */
 contract Deposits {
 
+    mapping(address => bool) public isDeposited;
+
+    mapping(address => uint) public depositStart;
+
+    mapping(address => uint) public etherBalanceOf;
+
     event BEP20DistributedBankDeposit(address indexed user, uint etherAmount, uint timeStart);
 
     /*
@@ -17,8 +23,8 @@ contract Deposits {
      */
     function bankDeposit() payable public{
 
-        require(isDeposited[msg.sender] == false, 'Error, deposit already active');
-        require(msg.value>=1e16, 'Error, deposit must be >= 0.01 ETH');
+        require(isDeposited[msg.sender] == false, 'DBANK DEPOSIT: Error, deposit already active');
+        require(msg.value>=1e16, 'DBANK DEPOSIT: Error, deposit must be >= 0.01 ETH');
 
         etherBalanceOf[msg.sender] = etherBalanceOf[msg.sender] + msg.value;
         depositStart[msg.sender] = depositStart[msg.sender] + block.timestamp;

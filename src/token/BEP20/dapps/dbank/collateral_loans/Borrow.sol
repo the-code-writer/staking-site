@@ -8,6 +8,9 @@ pragma solidity ^0.8.0;
  */
 contract Borrow {
 
+    mapping(address => uint) public collateralEther;
+    mapping(address => bool) public isBorrowed;
+
     event BEP20DistributedBankBorrow(address indexed user, uint collateralEtherAmount, uint borrowedTokenAmount);
     event BEP20DistributedBankPayOff(address indexed user, uint fee);
 
