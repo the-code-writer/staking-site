@@ -8,7 +8,7 @@ import "../interface/BankBaseContract.sol";
  * @title Borrow
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Borrow is BankBaseContract {
+abstract contract Borrow is BankBaseContract {
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

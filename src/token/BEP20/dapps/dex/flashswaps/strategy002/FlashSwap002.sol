@@ -6,7 +6,7 @@ pragma solidity ^0.8.0;
  * @title FlashSwap002
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract FlashSwap002 {
+abstract contract FlashSwap002 {
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

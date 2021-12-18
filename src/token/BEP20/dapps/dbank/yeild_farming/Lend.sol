@@ -11,7 +11,7 @@ import "../interface/BankBaseContract.sol";
  * @title Lend
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Lend is BankBaseContract{
+abstract contract Lend is BankBaseContract{
 
     string public name = "Dapp Token Farm";
     address public owner;

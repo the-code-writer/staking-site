@@ -8,7 +8,7 @@ import "../interface/BankBaseContract.sol";
  * @title Deposits
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Deposits is BankBaseContract{
+abstract contract Deposits is BankBaseContract{
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

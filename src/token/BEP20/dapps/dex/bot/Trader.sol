@@ -6,7 +6,7 @@ pragma solidity ^0.8.0;
  * @title Trader
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Trader {
+abstract contract Trader {
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
