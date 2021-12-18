@@ -13,7 +13,7 @@ contract FlashSwap001 {
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public {
 
     }
 

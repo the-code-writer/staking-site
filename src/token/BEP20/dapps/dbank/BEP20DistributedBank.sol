@@ -6,17 +6,27 @@ import "../../interfaces/BEP20.sol";
 
 import "../dbank/deposits/Deposits.sol";
 import "../dbank/collateral_loans/Borrow.sol";
-import "../dbank/yeild_farming/Stake.sol";
+import "../dbank/yeild_farming/Lend.sol";
 import "../dbank/withdrawals/Withdrawals.sol";
 
 /**
  * @title BEP20DistributedVault
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
+abstract contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
 
+    struct Transaction {
+        address fromAddress;
+        address toAddress;
+        uint amount;
+    }
 
+    Transaction[] transactions;
 
+    modifier onlyOwner() {
+        require(owner == msg.sender);
+        _;
+    }
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

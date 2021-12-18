@@ -8,7 +8,7 @@ import "../../interfaces/BEP20.sol";
  * @title BEP20DecentralisedAutonomousOrganization
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract BEP20DecentralisedAutonomousOrganization is BEP20 {
+abstract contract BEP20DecentralisedAutonomousOrganization is BEP20 {
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

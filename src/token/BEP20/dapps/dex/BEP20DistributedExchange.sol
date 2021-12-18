@@ -17,15 +17,15 @@ import "./swaps/Exchange.sol";
  * @title TokenRecover
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract BEP20DistributedExchange is BEP20, Arbitrage, PriceMonitor, Trader, FlashSwap001, FlashSwap002, FlashSwap003, Exchange{
+abstract contract BEP20DistributedExchange is BEP20, Arbitrage, PriceMonitor, Trader, FlashSwap001, FlashSwap002, FlashSwap003, Exchange{
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function recoverBEP20(address tokenAddress, uint256 tokenAmount) public onlyOwner {
-        IBEP20(tokenAddress).transfer(owner(), tokenAmount);
+    function init(address tokenAddress, uint256 tokenAmount) public {
+
     }
 
 }

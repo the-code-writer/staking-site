@@ -2,19 +2,13 @@
 
 pragma solidity ^0.8.0;
 
+import "../interface/BankBaseContract.sol";
+
 /**
  * @title Deposits
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Deposits {
-
-    mapping(address => bool) public isDeposited;
-
-    mapping(address => uint) public depositStart;
-
-    mapping(address => uint) public etherBalanceOf;
-
-    event BEP20DistributedBankDeposit(address indexed user, uint etherAmount, uint timeStart);
+contract Deposits is BankBaseContract{
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.

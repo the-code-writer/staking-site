@@ -2,13 +2,13 @@
 
 pragma solidity ^0.8.0;
 
+import "../interface/BankBaseContract.sol";
+
 /**
  * @title Withdrawals
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Withdrawals {
-
-    event BEP20DistributedBankWithdraw(address indexed user, uint etherAmount, uint depositTime, uint interest);
+contract Withdrawals is BankBaseContract {
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
@@ -34,7 +34,7 @@ contract Withdrawals {
 
         //send funds to user
         msg.sender.transfer(etherBalanceOf[msg.sender]); //eth back to user
-        mint(msg.sender, interest); //interest to user
+        super.token.mint(msg.sender, interest); //interest to user
 
         //reset depositer data
         depositStart[msg.sender] = 0;

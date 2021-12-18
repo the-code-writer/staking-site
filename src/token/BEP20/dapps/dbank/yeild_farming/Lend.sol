@@ -5,11 +5,13 @@ pragma solidity ^0.8.0;
 import "./DappToken.sol";
 import "./DaiToken.sol";
 
+import "../interface/BankBaseContract.sol";
+
 /**
  * @title Lend
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Lend {
+contract Lend is BankBaseContract{
 
     string public name = "Dapp Token Farm";
     address public owner;
