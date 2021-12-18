@@ -8,7 +8,7 @@ pragma solidity ^0.8.0;
  */
 contract FlashSwap001 {
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent

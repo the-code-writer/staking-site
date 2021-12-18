@@ -10,7 +10,7 @@ contract Deposits {
 
     event BEP20DistributedBankDeposit(address indexed user, uint etherAmount, uint timeStart);
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent

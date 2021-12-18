@@ -21,7 +21,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
     mapping(address => bool) public isDeposited;
     mapping(address => bool) public isBorrowed;
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
@@ -30,7 +30,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
         bankDeposit();
     }
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
@@ -39,7 +39,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
         bankWithdraw();
     }
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
@@ -48,7 +48,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
         bankBorrow();
     }
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
@@ -57,7 +57,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
         bankStakeTokens();
     }
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
@@ -66,7 +66,7 @@ contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
         bankUnstakeTokens();
     }
 
-    /**
+    /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
