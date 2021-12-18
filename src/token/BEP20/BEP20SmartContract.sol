@@ -2,6 +2,7 @@
 
 pragma solidity ^0.8.0;
 
+// Import interfaces
 import "./interfaces/BEP20Capped.sol";
 import "./interfaces/BEP20Mintable.sol";
 import "./interfaces/BEP20Burnable.sol";
@@ -10,8 +11,21 @@ import "./interfaces/BEP20Pausable.sol";
 import "./interfaces/BEP20Snapshot.sol";
 import "./interfaces/BEP20Deflationary.sol";
 
+// Import Utils
 import "./utils/TokenRecover.sol";
 import "./utils/PayableToken.sol";
+
+/*
+
+// Import DAPPS
+import "./dapps/dao/BEP20DecentralisedAutonomousOrganization.sol";
+import "./dapps/dbank/BEP20DistributedBank.sol";
+import "./dapps/dex/BEP20DistributedExchange.sol";
+import "./dapps/dvault/BEP20DistributedVault.sol";
+
+contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover, BEP20DecentralisedAutonomousOrganization, BEP20DistributedBank, BEP20DistributedExchange, BEP20DistributedVault {
+
+*/
 
 contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover {
     constructor (
@@ -30,7 +44,7 @@ contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20O
     payable
     {
         _setupDecimals(decimals_);
-        _mint(_msgSender(), initialBalance_*10**decimals_);
+        _mint(_msgSender(), initialBalance_ * 10 ** decimals_);
     }
 
     /**
@@ -77,4 +91,5 @@ contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20O
     function _transfer(address sender, address recipient, uint256 amount) internal override(BEP20Deflationary, BEP20) {
         super._transfer(sender, recipient, amount);
     }
+
 }

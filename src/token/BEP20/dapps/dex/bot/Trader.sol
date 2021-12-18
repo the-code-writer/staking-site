@@ -2,13 +2,11 @@
 
 pragma solidity ^0.8.0;
 
-import "../../../interfaces/BEP20.sol";
-
 /**
- * @title TokenRecover
+ * @title Trader
  * @dev Allow to recover any BEP20 sent into the contract for error
  */
-contract Trader is BEP20 {
+contract Trader {
 
     /**
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
