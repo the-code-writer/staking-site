@@ -15,11 +15,8 @@ import "../dbank/withdrawals/Withdrawals.sol";
  */
 contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
 
-    mapping(address => uint) public depositStart;
-    mapping(address => uint) public etherBalanceOf;
-    mapping(address => uint) public collateralEther;
-    mapping(address => bool) public isDeposited;
-    mapping(address => bool) public isBorrowed;
+
+
 
     /*
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
