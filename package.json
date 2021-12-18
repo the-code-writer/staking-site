@@ -1,15 +1,18 @@
 {
-  "name": "startupkit",
+  "name": "smart-contracts",
   "version": "1.0.0",
-  "description": "Contract Startup Kit",
+  "description": "Smart Contracts",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dovellous/profitable-flashloans/startupkit.git"
+    "url": "git+https://github.com/dovellous/smart-contracts.git"
   },
   "keywords": [
-    "foo",
-    "bar"
+    "smart contracts",
+    "bep20",
+    "solidity",
+    "truffle",
+    "hardhat"
   ],
   "author": "@dovellous",
   "license": "MIT",
@@ -24,8 +27,9 @@
     "hcompile": "npx hardhat compile",
     "hdeploy": "npx hardhat run scripts/deploy.js",
     "hverify": "npx hardhat verify 0xFEf1CAb1d78a9616023722f5280e6F8ba0dc15D3 \"Zimbabwe Test 1\" ZIM1 9 1000000 25000 0xDC72E097f058F7a46f27aD7b303CE9b773c9cBCe 0x87eDa0892b0456DBE2aaF811EBe9b96923EBc48A --contract \"contracts/BEP20SmartContract.sol:BEP20SmartContract\"",
-    "hrun": "yarn hclean && yarn hcompile && yarn hdeploy",
-    "hflatten": "npx hardhat flatten contracts/BEP20SmartContract.sol > contracts/BEP20SmartContractFlattened.sol",
+    "hrun": "yarn hclean && yarn hflatten && yarn hcompile && yarn hdeploy",
+    "hflatten": "npx hardhat flatten src/token/BEP20/BEP20SmartContract.sol > contracts/BEP20SmartContract.sol",
+    "hmerge": "sol-merger src/token/BEP20/BEP20SmartContract.sol build/",
     "hconsole": "npx hardhat console",
     "haccounts": "npx hardhat accounts",
     "hclean": "npx hardhat clean",

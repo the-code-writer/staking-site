@@ -1,12 +1,8 @@
-// Sources flattened with hardhat v2.8.0 https://hardhat.org
+pragma solidity ^0.8.0;
 
-// File @openzeppelin/contracts/utils/Context.sol@v4.4.1
 
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Provides information about the current execution context, including the
  * sender of the transaction and its data. While these are generally available
@@ -27,14 +23,8 @@ abstract contract Context {
     }
 }
 
-
-// File @openzeppelin/contracts/access/Ownable.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Contract module which provides a basic access control mechanism, where
  * there is an account (an owner) that can be granted exclusive access to
@@ -105,13 +95,7 @@ abstract contract Ownable is Context {
     }
 }
 
-
-// File src/token/BEP20/lib/IBEP20.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Interface of the BEP standard.
  */
@@ -207,13 +191,7 @@ interface IBEP20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-
-// File src/token/BEP20/lib/BEP20.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Implementation of the {IBEP20} interface.
  *
@@ -525,13 +503,7 @@ contract BEP20 is Ownable, IBEP20 {
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
 }
 
-
-// File src/token/BEP20/lib/BEP20Capped.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Extension of {BEP20} that adds a cap to the supply of tokens.
  */
@@ -563,13 +535,7 @@ abstract contract BEP20Capped is BEP20 {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Mintable.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @title BEP20Mintable
  * @dev Implementation of the BEP20Mintable. Extension of {BEP20} that adds a minting behaviour.
@@ -630,13 +596,7 @@ abstract contract BEP20Mintable is BEP20 {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Burnable.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Extension of {BEP20} that allows token holders to destroy both their own
  * tokens and those that they have an allowance for, in a way that can be
@@ -671,14 +631,8 @@ abstract contract BEP20Burnable is BEP20 {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/introspection/IERC165.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/IERC165.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Interface of the ERC165 standard, as defined in the
  * https://eips.ethereum.org/EIPS/eip-165[EIP].
@@ -700,13 +654,7 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
-
-// File src/token/BEP20/lib/IBEP20Operable.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @title IBEP20Operable Interface
  * @dev Interface for a Operable Token contract as defined in
@@ -776,13 +724,7 @@ interface IBEP20Operable is IBEP20, IERC165 {
     function approveAndCall(address spender, uint256 amount, bytes calldata data) external returns (bool);
 }
 
-
-// File src/token/BEP20/lib/IBEP20OperableReceiver.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @title IBEP20OperableReceiver Interface
  * @dev Interface for any contract that wants to support transferAndCall or transferFromAndCall
@@ -807,13 +749,7 @@ interface IBEP20OperableReceiver {
     function onTransferReceived(address operator, address sender, uint256 amount, bytes calldata data) external returns (bytes4);
 }
 
-
-// File src/token/BEP20/lib/IBEP20OperableSpender.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @title IBEP20OperableSpender Interface
  * @dev Interface for any contract that wants to support approveAndCall
@@ -837,14 +773,8 @@ interface IBEP20OperableSpender {
     function onApprovalReceived(address sender, uint256 amount, bytes calldata data) external returns (bytes4);
 }
 
-
-// File @openzeppelin/contracts/utils/Address.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Address.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Collection of functions related to the address type
  */
@@ -1058,14 +988,8 @@ library Address {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/introspection/ERC165Checker.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/ERC165Checker.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Library used to query support of an interface declared via {IERC165}.
  *
@@ -1173,14 +1097,8 @@ library ERC165Checker {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/introspection/ERC165.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/ERC165.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Implementation of the {IERC165} interface.
  *
@@ -1204,16 +1122,7 @@ abstract contract ERC165 is IERC165 {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Operable.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
-
-
-
 /**
  * @title BEP20Operable
  * @dev Implementation of the {IBEP20Operable} interface
@@ -1337,13 +1246,7 @@ abstract contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Pausable.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev BEP20 token with pausable token transfers, minting and burning.
  *
@@ -1429,14 +1332,8 @@ abstract contract BEP20Pausable is BEP20 {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/math/Math.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/math/Math.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Standard math utilities missing in the Solidity language.
  */
@@ -1476,14 +1373,8 @@ library Math {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/Arrays.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Arrays.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Collection of functions related to array types.
  */
@@ -1526,14 +1417,8 @@ library Arrays {
     }
 }
 
-
-// File @openzeppelin/contracts/utils/Counters.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @title Counters
  * @author Matt Condon (@shrugs)
@@ -1573,15 +1458,7 @@ library Counters {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Snapshot.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
-
-
 /**
  * @dev This contract extends an BEP20 token with a snapshot mechanism. When a snapshot is created, the balances and
  * total supply at the time are recorded for later access.
@@ -1754,17 +1631,11 @@ abstract contract BEP20Snapshot is BEP20 {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20TxnFeeReceiverAddress.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Extension of {BEP20} that adds the address of the transactions fee receiver.
  */
-abstract contract BEP20TxnFeeReceiverAddress{
+abstract contract BEP20TxnFeeReceiverAddress {
 
     address  private _txnFeeReceiverAddress;
 
@@ -1786,17 +1657,11 @@ abstract contract BEP20TxnFeeReceiverAddress{
 
 }
 
-
-// File src/token/BEP20/lib/BEP20BrnFeeReceiverAddress.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Extension of {BEP20} that adds the address of the burn fee receiver.
  */
-abstract contract BEP20BrnFeeReceiverAddress{
+abstract contract BEP20BrnFeeReceiverAddress {
     
     address  private _brnFeeReceiverAddress;
 
@@ -1818,18 +1683,11 @@ abstract contract BEP20BrnFeeReceiverAddress{
 
 }
 
-
-// File @openzeppelin/contracts/utils/math/SafeMath.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/math/SafeMath.sol)
-
-pragma solidity ^0.8.0;
-
 // CAUTION
 // This version of SafeMath should only be used with Solidity 0.8 or later,
 // because it relies on the compiler's built in overflow checks.
-
 /**
  * @dev Wrappers over Solidity's arithmetic operations.
  *
@@ -2049,14 +1907,7 @@ library SafeMath {
     }
 }
 
-
-// File src/token/BEP20/lib/BEP20Deflationary.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
-
 /**
  * @dev Extension of {BEP20} that adds a deflation with transfer fee and burn fee.
  */
@@ -2110,13 +1961,7 @@ abstract contract BEP20Deflationary is BEP20, BEP20TxnFeeReceiverAddress, BEP20B
     }
 }
 
-
-// File src/token/BEP20/utils/TokenRecover.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
 /**
  * @title TokenRecover
  * @dev Allow to recover any BEP20 sent into the contract for error
@@ -2133,14 +1978,8 @@ contract TokenRecover is Ownable {
     }
 }
 
-
-// File @openzeppelin/contracts/token/ERC20/IERC20.sol@v4.4.1
-
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
-
-pragma solidity ^0.8.0;
-
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
  */
@@ -2219,14 +2058,7 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-
-// File src/token/BEP20/utils/PayableToken.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
-
 /**
  * @title IERC1363 Interface
  * @author Vittorio Minacori (https://github.com/vittominacori)
@@ -2313,20 +2145,7 @@ interface IERC1363 is IERC20, IERC165 {
     ) external returns (bool);
 }
 
-
-// File src/token/BEP20/BEP20SmartContract.sol
-
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
-
-
-
-
-
-
-
 contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover {
     constructor (
         string memory name_,
