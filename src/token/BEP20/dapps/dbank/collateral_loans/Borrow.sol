@@ -22,7 +22,7 @@ contract Borrow {
     function bankBorrow() payable public{
 
         require(msg.value>=1e16, 'Error, collateral must be >= 0.01 ETH');
-        require(isBorrowed[msg.sender] == false, 'Error, loan already taken');
+        require(isBorrowed[msg.sender] == false, 'Error, loan already taken.');
 
         //this Ether will be locked till user payOff the loan
         collateralEther[msg.sender] = collateralEther[msg.sender] + msg.value;
