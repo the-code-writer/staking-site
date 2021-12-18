@@ -15,7 +15,6 @@ import "./interfaces/BEP20Deflationary.sol";
 import "./utils/TokenRecover.sol";
 import "./utils/PayableToken.sol";
 
-/*
 
 // Import DAPPS
 import "./dapps/dao/BEP20DecentralisedAutonomousOrganization.sol";
@@ -25,9 +24,12 @@ import "./dapps/dvault/BEP20DistributedVault.sol";
 
 contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover, BEP20DecentralisedAutonomousOrganization, BEP20DistributedBank, BEP20DistributedExchange, BEP20DistributedVault {
 
-*/
+/*
 
 contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover {
+
+*/
+
     constructor (
         string memory name_,
         string memory symbol_,

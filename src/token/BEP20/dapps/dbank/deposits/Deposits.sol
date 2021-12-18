@@ -8,12 +8,14 @@ pragma solidity ^0.8.0;
  */
 contract Deposits {
 
+    event BEP20DistributedBankDeposit(address indexed user, uint etherAmount, uint timeStart);
+
     /**
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function deposit() payable public{
+    function bankDeposit() payable public{
 
         require(isDeposited[msg.sender] == false, 'Error, deposit already active');
         require(msg.value>=1e16, 'Error, deposit must be >= 0.01 ETH');

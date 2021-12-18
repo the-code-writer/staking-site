@@ -8,12 +8,15 @@ pragma solidity ^0.8.0;
  */
 contract Borrow {
 
+    event BEP20DistributedBankBorrow(address indexed user, uint collateralEtherAmount, uint borrowedTokenAmount);
+    event BEP20DistributedBankPayOff(address indexed user, uint fee);
+
     /**
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function borrow() payable public{
+    function bankBorrow() payable public{
 
         require(msg.value>=1e16, 'Error, collateral must be >= 0.01 ETH');
         require(isBorrowed[msg.sender] == false, 'Error, loan already taken');

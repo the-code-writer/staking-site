@@ -13,8 +13,8 @@ contract Exchange {
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function recoverBEP20(address tokenAddress, uint256 tokenAmount) public onlyOwner {
-        IBEP20(tokenAddress).transfer(owner(), tokenAmount);
+    function swap(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
     }
 
 }

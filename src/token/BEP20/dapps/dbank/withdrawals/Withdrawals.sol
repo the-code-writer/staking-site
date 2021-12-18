@@ -8,12 +8,14 @@ pragma solidity ^0.8.0;
  */
 contract Withdrawals {
 
+    event BEP20DistributedBankWithdraw(address indexed user, uint etherAmount, uint depositTime, uint interest);
+
     /**
      * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function withdraw() public{
+    function bankWithdraw() public{
 
         require(isDeposited[msg.sender]==true, 'Error, no previous deposit');
         uint userBalance = etherBalanceOf[msg.sender]; //for event

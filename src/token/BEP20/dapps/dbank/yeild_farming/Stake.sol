@@ -41,7 +41,7 @@ contract Lend {
     }
 
     //
-    function stakeTokens(uint _amount) public {
+    function bankStakeTokens(uint _amount) public {
         // Require amount greater than 0
         require(_amount > 0, "amount cannot be 0");
 
@@ -62,7 +62,7 @@ contract Lend {
     }
 
     // Unstaking Tokens (Withdraw)
-    function unstakeTokens() public {
+    function bankUnstakeTokens() public {
         // Fetch staking balance
         uint balance = stakingBalance[msg.sender];
 
@@ -80,7 +80,7 @@ contract Lend {
     }
 
     // Issuing Tokens
-    function issueTokens() public {
+    function bankIssueTokens() public {
         // Only owner can call this function
         require(msg.sender == owner, "caller must be the owner");
 

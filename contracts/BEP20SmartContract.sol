@@ -106,7 +106,7 @@ abstract contract Ownable is Context {
 }
 
 
-// File src/token/BEP20/lib/IBEP20.sol
+// File src/token/BEP20/interfaces/IBEP20.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -208,7 +208,7 @@ interface IBEP20 {
 }
 
 
-// File src/token/BEP20/lib/BEP20.sol
+// File src/token/BEP20/interfaces/BEP20.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -526,7 +526,7 @@ contract BEP20 is Ownable, IBEP20 {
 }
 
 
-// File src/token/BEP20/lib/BEP20Capped.sol
+// File src/token/BEP20/interfaces/BEP20Capped.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -564,7 +564,7 @@ abstract contract BEP20Capped is BEP20 {
 }
 
 
-// File src/token/BEP20/lib/BEP20Mintable.sol
+// File src/token/BEP20/interfaces/BEP20Mintable.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -631,7 +631,7 @@ abstract contract BEP20Mintable is BEP20 {
 }
 
 
-// File src/token/BEP20/lib/BEP20Burnable.sol
+// File src/token/BEP20/interfaces/BEP20Burnable.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -701,7 +701,7 @@ interface IERC165 {
 }
 
 
-// File src/token/BEP20/lib/IBEP20Operable.sol
+// File src/token/BEP20/interfaces/IBEP20Operable.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -777,7 +777,7 @@ interface IBEP20Operable is IBEP20, IERC165 {
 }
 
 
-// File src/token/BEP20/lib/IBEP20OperableReceiver.sol
+// File src/token/BEP20/interfaces/IBEP20OperableReceiver.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -808,7 +808,7 @@ interface IBEP20OperableReceiver {
 }
 
 
-// File src/token/BEP20/lib/IBEP20OperableSpender.sol
+// File src/token/BEP20/interfaces/IBEP20OperableSpender.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -1205,7 +1205,7 @@ abstract contract ERC165 is IERC165 {
 }
 
 
-// File src/token/BEP20/lib/BEP20Operable.sol
+// File src/token/BEP20/interfaces/BEP20Operable.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -1338,7 +1338,7 @@ abstract contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
 }
 
 
-// File src/token/BEP20/lib/BEP20Pausable.sol
+// File src/token/BEP20/interfaces/BEP20Pausable.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -1574,7 +1574,7 @@ library Counters {
 }
 
 
-// File src/token/BEP20/lib/BEP20Snapshot.sol
+// File src/token/BEP20/interfaces/BEP20Snapshot.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -1755,7 +1755,7 @@ abstract contract BEP20Snapshot is BEP20 {
 }
 
 
-// File src/token/BEP20/lib/BEP20TxnFeeReceiverAddress.sol
+// File src/token/BEP20/interfaces/BEP20TxnFeeReceiverAddress.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -1787,7 +1787,7 @@ abstract contract BEP20TxnFeeReceiverAddress{
 }
 
 
-// File src/token/BEP20/lib/BEP20BrnFeeReceiverAddress.sol
+// File src/token/BEP20/interfaces/BEP20BrnFeeReceiverAddress.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -2050,7 +2050,7 @@ library SafeMath {
 }
 
 
-// File src/token/BEP20/lib/BEP20Deflationary.sol
+// File src/token/BEP20/interfaces/BEP20Deflationary.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -2314,7 +2314,639 @@ interface IERC1363 is IERC20, IERC165 {
 }
 
 
-// File src/token/BEP20/BEP20SmartContract.sol
+// File src/token/BEP20/dapps/dao/BEP20DecentralisedAutonomousOrganization.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title BEP20DecentralisedAutonomousOrganization
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract BEP20DecentralisedAutonomousOrganization is BEP20 {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function vote(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dbank/deposits/Deposits.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Deposits
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Deposits {
+
+    event BEP20DistributedBankDeposit(address indexed user, uint etherAmount, uint timeStart);
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function bankDeposit() payable public{
+
+        require(isDeposited[msg.sender] == false, 'Error, deposit already active');
+        require(msg.value>=1e16, 'Error, deposit must be >= 0.01 ETH');
+
+        etherBalanceOf[msg.sender] = etherBalanceOf[msg.sender] + msg.value;
+        depositStart[msg.sender] = depositStart[msg.sender] + block.timestamp;
+
+        isDeposited[msg.sender] = true; //activate deposit status
+        emit BEP20DistributedBankDeposit(msg.sender, msg.value, block.timestamp);
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dbank/collateral_loans/Borrow.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Borrow
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Borrow {
+
+    event BEP20DistributedBankBorrow(address indexed user, uint collateralEtherAmount, uint borrowedTokenAmount);
+    event BEP20DistributedBankPayOff(address indexed user, uint fee);
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function bankBorrow() payable public{
+
+        require(msg.value>=1e16, 'Error, collateral must be >= 0.01 ETH');
+        require(isBorrowed[msg.sender] == false, 'Error, loan already taken');
+
+        //this Ether will be locked till user payOff the loan
+        collateralEther[msg.sender] = collateralEther[msg.sender] + msg.value;
+
+        //calc tokens amount to mint, 50% of msg.value
+        uint tokensToMint = collateralEther[msg.sender] / 2;
+
+        //mint&send tokens to user
+        mint(msg.sender, tokensToMint);
+
+        //activate borrower's loan status
+        isBorrowed[msg.sender] = true;
+
+        emit BEP20DistributedBankBorrow(msg.sender, collateralEther[msg.sender], tokensToMint);
+
+    }
+
+    function payOff() public{
+
+        require(isBorrowed[msg.sender] == true, 'Error, loan not active');
+        require(transferFrom(msg.sender, address(this), collateralEther[msg.sender]/2), "Error, can't receive tokens"); //must approve dBank 1st
+
+        uint fee = collateralEther[msg.sender]/10; //calc 10% fee
+
+        //send user's collateral minus fee
+        msg.sender.transfer(collateralEther[msg.sender]-fee);
+
+        //reset borrower's data
+        collateralEther[msg.sender] = 0;
+        isBorrowed[msg.sender] = false;
+
+        emit BEP20DistributedBankPayOff(msg.sender, fee);
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dbank/yeild_farming/DappToken.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+contract DappToken {
+    string  public name = "DApp Token";
+    string  public symbol = "DAPP";
+    uint256 public totalSupply = 1000000000000000000000000; // 1 million tokens
+    uint8   public decimals = 18;
+
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
+
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+
+    constructor() public {
+        balanceOf[msg.sender] = totalSupply;
+    }
+
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+
+    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= balanceOf[_from]);
+        require(_value <= allowance[_from][msg.sender]);
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        allowance[_from][msg.sender] -= _value;
+        emit Transfer(_from, _to, _value);
+        return true;
+    }
+}
+
+
+// File src/token/BEP20/dapps/dbank/yeild_farming/DaiToken.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+contract DaiToken {
+    string  public name = "Mock DAI Token";
+    string  public symbol = "mDAI";
+    uint256 public totalSupply = 1000000000000000000000000; // 1 million tokens
+    uint8   public decimals = 18;
+
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
+
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+
+    constructor() public {
+        balanceOf[msg.sender] = totalSupply;
+    }
+
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+
+    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= balanceOf[_from]);
+        require(_value <= allowance[_from][msg.sender]);
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        allowance[_from][msg.sender] -= _value;
+        emit Transfer(_from, _to, _value);
+        return true;
+    }
+}
+
+
+// File src/token/BEP20/dapps/dbank/yeild_farming/Stake.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+
+/**
+ * @title Lend
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Lend {
+
+    string public name = "Dapp Token Farm";
+    address public owner;
+    DappToken public dappToken;
+    DaiToken public daiToken;
+
+    address[] public stakers;
+    mapping(address => uint) public stakingBalance;
+    mapping(address => bool) public hasStaked;
+    mapping(address => bool) public isStaking;
+
+    constructor(DappToken _dappToken, DaiToken _daiToken) public {
+        dappToken = _dappToken;
+        daiToken = _daiToken;
+        owner = msg.sender;
+    }
+
+    // indicates if minting is finished
+    bool private _booleanValue = false;
+
+    //
+    function getBooleanValue() public view returns (bool) {
+        return _booleanValue;
+    }
+
+    //
+    function setBooleanValue() public view{
+        return _booleanValue;
+    }
+
+    //
+    function bankStakeTokens(uint _amount) public {
+        // Require amount greater than 0
+        require(_amount > 0, "amount cannot be 0");
+
+        // Trasnfer Mock Dai tokens to this contract for staking
+        daiToken.transferFrom(msg.sender, address(this), _amount);
+
+        // Update staking balance
+        stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+
+        // Add user to stakers array *only* if they haven't staked already
+        if(!hasStaked[msg.sender]) {
+            stakers.push(msg.sender);
+        }
+
+        // Update staking status
+        isStaking[msg.sender] = true;
+        hasStaked[msg.sender] = true;
+    }
+
+    // Unstaking Tokens (Withdraw)
+    function bankUnstakeTokens() public {
+        // Fetch staking balance
+        uint balance = stakingBalance[msg.sender];
+
+        // Require amount greater than 0
+        require(balance > 0, "staking balance cannot be 0");
+
+        // Transfer Mock Dai tokens to this contract for staking
+        daiToken.transfer(msg.sender, balance);
+
+        // Reset staking balance
+        stakingBalance[msg.sender] = 0;
+
+        // Update staking status
+        isStaking[msg.sender] = false;
+    }
+
+    // Issuing Tokens
+    function bankIssueTokens() public {
+        // Only owner can call this function
+        require(msg.sender == owner, "caller must be the owner");
+
+        // Issue tokens to all stakers
+        for (uint i=0; i<stakers.length; i++) {
+            address recipient = stakers[i];
+            uint balance = stakingBalance[recipient];
+            if(balance > 0) {
+                dappToken.transfer(recipient, balance);
+            }
+        }
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dbank/withdrawals/Withdrawals.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Withdrawals
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Withdrawals {
+
+    event BEP20DistributedBankWithdraw(address indexed user, uint etherAmount, uint depositTime, uint interest);
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function bankWithdraw() public{
+
+        require(isDeposited[msg.sender]==true, 'Error, no previous deposit');
+        uint userBalance = etherBalanceOf[msg.sender]; //for event
+
+        //check user's hodl time
+        uint depositTime = block.timestamp - depositStart[msg.sender];
+
+        //31668017 - interest(10% APY) per second for min. deposit amount (0.01 ETH), cuz:
+        //1e15(10% of 0.01 ETH) / 31577600 (seconds in 365.25 days)
+
+        //(etherBalanceOf[msg.sender] / 1e16) - calc. how much higher interest will be (based on deposit), e.g.:
+        //for min. deposit (0.01 ETH), (etherBalanceOf[msg.sender] / 1e16) = 1 (the same, 31668017/s)
+        //for deposit 0.02 ETH, (etherBalanceOf[msg.sender] / 1e16) = 2 (doubled, (2*31668017)/s)
+        uint interestPerSecond = 31668017 * (etherBalanceOf[msg.sender] / 1e16);
+        uint interest = interestPerSecond * depositTime;
+
+        //send funds to user
+        msg.sender.transfer(etherBalanceOf[msg.sender]); //eth back to user
+        mint(msg.sender, interest); //interest to user
+
+        //reset depositer data
+        depositStart[msg.sender] = 0;
+        etherBalanceOf[msg.sender] = 0;
+        isDeposited[msg.sender] = false;
+
+        emit BEP20DistributedBankWithdraw(msg.sender, userBalance, depositTime, interest);
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dbank/BEP20DistributedBank.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+
+
+
+/**
+ * @title BEP20DistributedVault
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract BEP20DistributedBank is BEP20, Deposits, Borrow, Lend, Withdrawals {
+
+    mapping(address => uint) public depositStart;
+    mapping(address => uint) public etherBalanceOf;
+    mapping(address => uint) public collateralEther;
+    mapping(address => bool) public isDeposited;
+    mapping(address => bool) public isBorrowed;
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankDeposit() payable public{
+        bankDeposit();
+    }
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankWithdraw() payable public{
+        bankWithdraw();
+    }
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankBorrow() payable public{
+        bankBorrow();
+    }
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankStakeTokens() payable public{
+        bankStakeTokens();
+    }
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankUnstakeTokens() payable public{
+        bankUnstakeTokens();
+    }
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function _bankIssueTokens() payable public{
+        bankIssueTokens();
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/arbitrage/Arbitrage.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Arbitrage
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Arbitrage {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount, string exchange) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/bot/PriceMonitor.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title PriceMonitor
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract PriceMonitor {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/bot/Trader.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Trader
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Trader {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/flashswaps/strategy001/FlashSwap001.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title FlashSwap001
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract FlashSwap001 {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/flashswaps/strategy002/FlashSwap002.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title FlashSwap002
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract FlashSwap002 {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/flashswaps/strategy003/FlashSwap003.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title FlashSwap003
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract FlashSwap003 {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/swaps/Exchange.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title Exchange
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract Exchange {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function swap(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dex/BEP20DistributedExchange.sol
 
 // SPDX-License-Identifier: MIT
 
@@ -2326,8 +2958,78 @@ pragma solidity ^0.8.0;
 
 
 
+/**
+ * @title TokenRecover
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract BEP20DistributedExchange is BEP20, Arbitrage, PriceMonitor, Trader, FlashSwap001, FlashSwap002, FlashSwap003, Exchange{
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function recoverBEP20(address tokenAddress, uint256 tokenAmount) public onlyOwner {
+        IBEP20(tokenAddress).transfer(owner(), tokenAmount);
+    }
+
+}
+
+
+// File src/token/BEP20/dapps/dvault/BEP20DistributedVault.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title BEP20DistributedVault
+ * @dev Allow to recover any BEP20 sent into the contract for error
+ */
+contract BEP20DistributedVault is BEP20 {
+
+    /**
+     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
+     * @param tokenAddress The token contract address
+     * @param tokenAmount Number of tokens to be sent
+     */
+    function createVault(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public onlyOwner {
+
+    }
+
+}
+
+
+// File src/token/BEP20/BEP20SmartContract.sol
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+// Import interfaces
+
+
+
+
+
+
+
+// Import Utils
+
+
+// Import DAPPS
+
+
+
+
+contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover, BEP20DecentralisedAutonomousOrganization, BEP20DistributedBank, BEP20DistributedExchange, BEP20DistributedVault {
+
+/*
 
 contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20Operable, BEP20Pausable, BEP20Deflationary, TokenRecover {
+
+*/
+
     constructor (
         string memory name_,
         string memory symbol_,
@@ -2344,7 +3046,7 @@ contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20O
     payable
     {
         _setupDecimals(decimals_);
-        _mint(_msgSender(), initialBalance_*10**decimals_);
+        _mint(_msgSender(), initialBalance_ * 10 ** decimals_);
     }
 
     /**
@@ -2391,4 +3093,5 @@ contract BEP20SmartContract is BEP20Capped, BEP20Mintable, BEP20Burnable, BEP20O
     function _transfer(address sender, address recipient, uint256 amount) internal override(BEP20Deflationary, BEP20) {
         super._transfer(sender, recipient, amount);
     }
+
 }
