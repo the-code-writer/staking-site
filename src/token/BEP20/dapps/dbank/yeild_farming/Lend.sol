@@ -13,8 +13,8 @@ import "../interface/BankBaseContract.sol";
  */
 abstract contract Lend is BankBaseContract{
 
-    string public name = "Dapp Token Farm";
-    address public owner;
+    string public lendTokenName = "Dapp Token Farm";
+    address public lendOwner;
     DappToken public dappToken;
     DaiToken public daiToken;
 
@@ -26,7 +26,7 @@ abstract contract Lend is BankBaseContract{
     constructor(DappToken _dappToken, DaiToken _daiToken) public {
         dappToken = _dappToken;
         daiToken = _daiToken;
-        owner = msg.sender;
+        lendOwner = msg.sender;
     }
 
     // indicates if minting is finished
@@ -84,7 +84,7 @@ abstract contract Lend is BankBaseContract{
     // Issuing Tokens
     function bankIssueTokens() public {
         // Only owner can call this function
-        require(msg.sender == owner, "caller must be the owner");
+        require(msg.sender == lendOwner, "caller must be the owner");
 
         // Issue tokens to all stakers
         for (uint i=0; i<stakers.length; i++) {

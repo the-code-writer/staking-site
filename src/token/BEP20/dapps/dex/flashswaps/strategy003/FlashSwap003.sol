@@ -13,7 +13,7 @@ abstract contract FlashSwap003 {
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public {
+    function executeOpportunity3(address tokenAddressA, address tokenAddressB, uint256 tokenAmount, string memory exchange) virtual public {
 
     }
 

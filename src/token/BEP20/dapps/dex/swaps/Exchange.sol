@@ -13,7 +13,7 @@ abstract contract Exchange {
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function swap(address tokenAddressA, address tokenAddressB, uint256 tokenAmount) public {
+    function swap(address tokenAddressA, address tokenAddressB, uint256 tokenAmount, string memory exchange) virtual public {
 
     }
 

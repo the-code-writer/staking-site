@@ -6,7 +6,7 @@ import "./BankToken.sol";
 
 abstract contract BankBaseContract {
 
-    BankToken private token;
+    BankToken public token;
 
     mapping(address => uint) public depositStart;
     mapping(address => uint) public etherBalanceOf;
@@ -20,7 +20,7 @@ abstract contract BankBaseContract {
     event BEP20DistributedBankBorrow(address indexed user, uint collateralEtherAmount, uint borrowedTokenAmount);
     event BEP20DistributedBankPayOff(address indexed user, uint fee);
 
-    constructor(BankToken _token) public {
+    constructor(BankToken _token) {
         token = _token;
     }
 

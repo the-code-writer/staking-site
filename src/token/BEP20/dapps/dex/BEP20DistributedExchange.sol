@@ -24,7 +24,7 @@ abstract contract BEP20DistributedExchange is BEP20, Arbitrage, PriceMonitor, Tr
      * @param tokenAddress The token contract address
      * @param tokenAmount Number of tokens to be sent
      */
-    function init(address tokenAddress, uint256 tokenAmount) public {
+    function executeOpportunity(address tokenAddressA, address tokenAddressB, uint256 tokenAmount, string memory exchange) override virtual public {
 
     }
 

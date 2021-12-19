@@ -27,7 +27,7 @@ abstract contract Borrow is BankBaseContract {
         uint tokensToMint = collateralEther[msg.sender] / 2;
 
         //mint&send tokens to user
-        super.token.mint(msg.sender, tokensToMint);
+        BankBaseContract.token.mint(msg.sender, tokensToMint);
 
         //activate borrower's loan status
         isBorrowed[msg.sender] = true;

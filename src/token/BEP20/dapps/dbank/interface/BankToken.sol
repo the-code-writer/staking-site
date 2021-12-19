@@ -3,7 +3,7 @@ pragma solidity 0.8.0;
 
 import "../../../interfaces/BEP20.sol";
 
-abstract contract BankToken is BEP20 {
+contract BankToken is BEP20 {
 
     address public minter;
 
